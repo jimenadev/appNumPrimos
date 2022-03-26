@@ -22,7 +22,8 @@ function obtieneNumerosPrimos(limite){
     primos['num_primos'].length = 0;
 
     for (var i= limite; i>= 2; i--){
-        if (esNumeroPrimo(i) == 'S') {
+   
+        if (primo(i,2)) {
             primos['num_primos'].push(i);
         }
     }
@@ -31,7 +32,7 @@ function obtieneNumerosPrimos(limite){
 
 }
 
-//devuelve si el numero es primo o no
+//devuelve si el numero es primo o no, con cilcos for
 function esNumeroPrimo(numero){
     let primo = 'S';
 
@@ -43,6 +44,20 @@ function esNumeroPrimo(numero){
      }
 
      return primo;
+}
+
+//devuelve si el numero es primo o no, de forma recursiva
+function primo(n, i){
+    if (n % i == 0 && n != i){
+        return false;
+    } else if (n<10 && (i==10 || i==n)) {
+        return true;
+    }else if (n>=10 && i==10 && n!=i) {
+        return true;
+    }else{
+        i= i+1;
+        return primo(n,i);
+    }
 }
 
 module.exports = {getNumPrimos};
