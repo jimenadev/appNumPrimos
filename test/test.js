@@ -59,3 +59,17 @@ describe('obtiene numeros primos: ',()=>{
 	});
 
 });
+
+describe('obtiene numeros primos: ',()=>{
+
+	it('No debería obtener los números (se envía caracteres especiales), mensaje de error', (done) => {
+		chai.request(url)
+            .get('/api/numeros-primos/$#*')
+			.end( function(err,res){
+				console.log(res.body)
+				expect(res).to.have.status(404);
+				done();
+			});
+	});
+
+});

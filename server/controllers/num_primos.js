@@ -1,5 +1,5 @@
 const primos =  {"num_primos" : []};
-const valoresAceptados = /^[0-9]+$/;
+const valoresAceptados = /[0-9]/;
 
 function getNumPrimos (req, res){
     let limite = req.params.limit;
