@@ -50,9 +50,9 @@ function esNumeroPrimo(numero){
 function primo(n, i){
     if (n % i == 0 && n != i){
         return false;
-    } else if (n<10 && (i==10 || i==n)) {
+    } else if (n<10 && i==n) {
         return true;
-    }else if (n>=10 && i==10 && n!=i) {
+    }else if (n>=10 && i==10) {
         return true;
     }else{
         i= i+1;
