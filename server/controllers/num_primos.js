@@ -12,7 +12,7 @@ function getNumPrimos (req, res){
 const  getPrimos = (limite, isNumPrimo) =>{
     primos['num_primos'].length = 0;
     for (var i= limite; i>= 2; i--){
-        if (isNumPrimo(i,2)) {
+        if (isNumPrimo(i)) {
             primos['num_primos'].push(i);
         }
     }
@@ -27,6 +27,7 @@ const isPrimo = (numero) =>{
             return  false;
         }
      }
+
      return true;
 }
 
@@ -40,7 +41,7 @@ function isPrimoRecursivo(n, i){
         return true;
     }else{
         i= i+1;
-        return isPrimo(n,i);
+        return isPrimoRecursivo(n,i);
     }
 }
 
