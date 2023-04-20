@@ -3,51 +3,35 @@ const valoresAceptados = /[0-9]/;
 
 function getNumPrimos (req, res){
     let limite = req.params.limit;
-    if (limite === undefined){
-        res.status(404).send('Debe ingresar un valor');
-    }else if(!limite.match(valoresAceptados)) {
-        res.status(404).send('Debe ingresar un valor númerico');
-    }else if(limite<2) {
-        res.status(404).send('Debe ingresar un limite mayor o igual a 2');
-    }else{
-       let result =  obtieneNumerosPrimos(limite);
-        res.send(result);
-    }
-    
+    let result =  getPrimos(limite, isPrimo);
+    res.send(result);
 }
 
 
 //retorna los numeros primos 
-function obtieneNumerosPrimos(limite){
+const  getPrimos = (limite, isNumPrimo) =>{
     primos['num_primos'].length = 0;
-
     for (var i= limite; i>= 2; i--){
-   
-        if (primo(i,2)) {
+        if (isNumPrimo(i,2)) {
             primos['num_primos'].push(i);
         }
     }
-   
     return primos;
 
 }
 
 //devuelve si el numero es primo o no, con cilcos for
-function esNumeroPrimo(numero){
-    let primo = 'S';
-
+const isPrimo = (numero) =>{
     for (var i = 2; i <= 9; i++) {
         if(numero % i == 0 && numero != i){
-            primo = 'N';
-            break;
+            return  false;
         }
      }
-
-     return primo;
+     return true;
 }
 
 //devuelve si el numero es primo o no, de forma recursiva
-function primo(n, i){
+function isPrimoRecursivo(n, i){
     if (n % i == 0 && n != i){
         return false;
     } else if (n<10 && i==n) {
@@ -56,7 +40,7 @@ function primo(n, i){
         return true;
     }else{
         i= i+1;
-        return primo(n,i);
+        return isPrimo(n,i);
     }
 }
 
